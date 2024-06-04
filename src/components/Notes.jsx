@@ -9,7 +9,6 @@ function Notes({ notes = [], setNotes = () => { } }) {
 			const updatedNotes = notes.map(note => {
 				const savedNote = savedNotes.find((n) => n.id == note.id);
 				if (savedNote) {
-					// return { ...note, position: savedNote.position }
 					return savedNote
 				} else {
 					const position = determineNewPosition()
@@ -17,7 +16,6 @@ function Notes({ notes = [], setNotes = () => { } }) {
 				}
 			})
 			setNotes(updatedNotes)
-			console.log(updatedNotes)
 			localStorage.setItem("notes", JSON.stringify(updatedNotes))
 		}
 	}, [notes.length])
@@ -36,7 +34,6 @@ function Notes({ notes = [], setNotes = () => { } }) {
 		const { id } = note;
 		const noteRef = noteRefs.current[id].current;
 		const rect = noteRef.getBoundingClientRect();
-		console.log(rect)
 		const offsetX = e.clientX - rect.left;
 		const offsetY = e.clientY - rect.top;
 
