@@ -66,6 +66,12 @@ function Notes({ notes = [], setNotes = () => { } }) {
 
 		document.addEventListener('mousemove', handleMouseMove);
 		document.addEventListener('mouseup', handleMouseUp);
+		// Add equivalent touch events
+		document.addEventListener('touchmove', handleMouseMove);
+		document.addEventListener('touchend', handleMouseUp);
+
+		// Optionally, add touchcancel to handle cases where the touch is interrupted
+		document.addEventListener('touchcancel', handleMouseUp);
 
 	}
 
@@ -81,6 +87,7 @@ function Notes({ notes = [], setNotes = () => { } }) {
 				initialPos={note.position}
 				content={note.text}
 				onMouseDown={(e) => handleDragStart(note, e)}
+				onTouchStart={(e) => handleDragStart(note, e)}
 			/>
 
 		})}
